@@ -2,7 +2,7 @@ import streamlit as st
 import asyncio
 from agents import Runner
 
-# Zwróć uwagę, że importujemy z Twojego pliku: socialmedia_media_agent.py
+
 from socialmedia_media_agent import content_writer_agent, get_transcript
 
 st.set_page_config(
@@ -32,7 +32,7 @@ with col2:
 
 st.subheader("Select platforms")
 col1, col2, col3 = st.columns(3)
-# Poprawiony błąd z "m value=True" na ", value=True"
+
 with col1:
     linkedin = st.checkbox("LinkedIn", value=True)
 with col2:
@@ -51,13 +51,13 @@ async def run_agent(vid_id, user_query, platforms):
         if user_query:
             msg = f"{user_query} for {platforms_str} based on this video transcript: {transcript}"
         
-        # Agent dostaje surowy tekst jako komendę
+
         result = await Runner.run(content_writer_agent, input=msg)
         return result, None
     except Exception as e:
         return None, str(e)
 
-# Poprawiony błąd "disabled=not, video_id"
+
 if st.button("Generate Content", type="primary", disabled=not video_id):
     selected_platforms = []
     if linkedin:
@@ -78,7 +78,7 @@ if st.button("Generate Content", type="primary", disabled=not video_id):
             elif result and result.final_output:
                 st.header("Generated Content")
                 
-                # Model zwraca czysty tekst, więc po prostu wrzucamy go na ekran
+
                 content = result.final_output
                 st.markdown(content)
                 
