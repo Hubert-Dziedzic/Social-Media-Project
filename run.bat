@@ -1,0 +1,6 @@
+@echo off
+echo Activating virtual environment...
+call .\antigravity-env\Scripts\activate
+echo Starting Streamlit app...
+streamlit run app.py
+pause
